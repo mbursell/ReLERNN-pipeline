@@ -67,3 +67,4 @@ This repository demonstrates a pipeline to install and run ReLERNN (https://doi.
 
 ## Running ReLERNN
 Now that we have installed and tested ReLERNN, we can run it on our own data. 
+* write about parameters and setting up directories for output and steps to run here
