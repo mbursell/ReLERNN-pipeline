@@ -1,9 +1,12 @@
 # Data Preparation
 
-## Genotype VCF Creation
+## Create Genotype VCF
 
-## Genotype VCF Filtering
-If starting whole pipeline from a publicly available gVCF that you need to filter for specific samples, begin at step 1. If your gVCF contains only the samples you want, start at step 3. 
+## Filter Genotype VCF
+If starting whole pipeline from a publicly available gVCF that you need to filter for specific samples, begin at step 1. If your gVCF contains only the samples and chromosomes you want, start at step 3. 
+
+Required Packages:
+    * bcftools
 
 1. Generate a text file of target SampleIDs
 
@@ -21,3 +24,22 @@ If starting whole pipeline from a publicly available gVCF that you need to filte
     ```
     bcftools view -m2 -M2 filtered_chroms.vcf > filtered_chroms_biallelic.vcf
     ```
+5. 
+
+## Create BED File
+ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. 
+
+Required Packages:
+    * bedops
+
+1. Go to [UCSC Kent Utilities](http://hgdownload.soe.ucsc.edu/admin/exe/) and download the individual `fetchChromSizes` package into the directory of your choice using the following command
+    ```
+    rsync://hgdownload.soe.ucsc.edu/genome/admin/exe/macOSX.x86_64/fetchChromSizes ./
+    ```
+2. In the same directory as `fetchChromSizes`, run this command to generate your BED file
+    ```
+    ./fetchChromSizes galGal4 | awk -v FS="\t" -v OFS="\t" '{ print $1, "0", $2; }' | sort-bed - > galGal4.bed
+    ```
+    * In this example, we generate a BED file for the galGal4 reference genome. Replace this with the name of your reference genome. This step may be limited by what reference genomes are in the UCSC Genome Browser. 
+
+   
