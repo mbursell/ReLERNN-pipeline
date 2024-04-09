@@ -17,7 +17,7 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
     module load cuda/11.8
     module load cudnn/8.9.7.29_cuda11.x
     ```
-    * Note that this step needs to be done every time when you run ReLERNN
+    * Note that this step needs to be done every time before you run ReLERNN
       
 3. Install additional packages using pip
     ```
@@ -31,7 +31,7 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
     wget https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/secure/8.6.1/tars/TensorRT-8.6.1.6.Linux.x86_64-gnu.cuda-11.8.tar.gz
     tar -xf TensorRT-8.6.1.6.Linux.x86_64-gnu.cuda-11.8.tar.gz
     ```
-5. Test that your environment is ready and working 
+5. Test that your environment is ready and working. Make sure Tensor RT works with available GPU
 
     Set the environment:
     ```
@@ -41,7 +41,7 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
     ```
     python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
     ```
-    * Note that this step needs to be done every time when you run ReLERNN
+    * Note that this step needs to be done every time before you run ReLERNN
     * If everything works fine, you'll see output message as:
       ```
       [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
