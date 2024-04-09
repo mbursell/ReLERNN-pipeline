@@ -41,11 +41,8 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
     ```
     python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
     ```
-    * Note that this step needs to be done every time before you run ReLERNN
-    * If everything works fine, you'll see output message as:
-      ```
-      [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
-      ```
+    * Note that these steps needs to be done every time before you run ReLERNN
+    * If everything works fine, you'll see an optimization warning that can be ignored and an output message that reads `[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]`. This is confirming that you have access to the GPU. 
       
 6. Clone ReLERNN repository in your space on the BRC cluster
       * To do this step, please open another window and login to the cluster, but do not enter into an interactive session. This step must be done on the head/login node. This step is currently set up to install ReLERNN in your home directory. If you want to install in another directory, you will need to change the paths accordingly.
@@ -64,9 +61,6 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
       cd examples/
       ./example_pipeline.sh
       ```
-      * Running the example should only take a few minutes. You can watch the progress be printed out. When finished running, type the command below to exit the interactive session
-      ```
-      exit
-      ```
-      * The output of the example run will be located in a file called 
+      * Running the example should only take a few minutes. You can watch the progress be printed out. When finished running, type the ```exit``` to exit the interactive session
+      * The output of the example run will be located in a directory called "example_output". The file containing the final results is called "example.PREDICT.BSCORRECTED.txt"
 
