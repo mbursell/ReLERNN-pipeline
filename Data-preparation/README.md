@@ -24,13 +24,13 @@ Required Packages:
     ```
     bcftools view -m2 -M2 filtered_chroms.vcf > filtered_chroms_biallelic.vcf
     ```
-5. 
 
 ## Create BED File
 ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. 
 
 Required Packages:
     * bedops
+    * python
 
 1. Go to [UCSC Kent Utilities](http://hgdownload.soe.ucsc.edu/admin/exe/) and download the individual `fetchChromSizes` package into the directory of your choice using the following command
     ```
