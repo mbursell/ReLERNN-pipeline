@@ -11,7 +11,6 @@ This repository demonstrates a pipeline to install and run ReLERNN (https://doi.
    ```
     * Note that node94 is the only updated GPU node that will work with ReLERNN
     * Warning: If you begin the interactive session and "(base)" appears before your username@node94, you have an activated conda environment. This will interfere with the installation. Please run ```conda deactivate``` before proceeding.
-    * For testing and running the small example that is provided by ReLERNN, we will use an interactive session on the cluster. For bigger jobs, we submit the job using sbatch. Those instructions will be provided in the "Running ReLERNN" section. 
     
 2. Load all previously installed modules with correct version numbers
     ```
