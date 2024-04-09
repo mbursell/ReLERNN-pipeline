@@ -9,6 +9,7 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
    srun --nodes=1 --ntasks-per-node=36 --time=01:00:00 --partition gpu --nodelist node94 --pty bash -i
    ```
     * Note that node94 is the only updated GPU node that will work with ReLERNN
+    * Warning: If you begin the interactive session and "(base)" appears before your username@node94, you have an activated conda environment. This will interfere with the installation. Please run ```conda deactivate``` before proceeding. 
     
 2. Load all previously installed modules with correct version numbers
     ```
