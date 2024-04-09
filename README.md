@@ -61,6 +61,6 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
       cd examples/
       ./example_pipeline.sh
       ```
-      * Running the example should only take a few minutes. You can watch the progress be printed out. When finished running, type the ```exit``` to exit the interactive session
+      * Running the example should only take a few minutes. You can watch the progress be printed out. When finished running, type ```exit``` to exit the interactive session
       * The output of the example run will be located in a directory called "example_output". The file containing the final results is called "example.PREDICT.BSCORRECTED.txt"
 
