@@ -1,5 +1,5 @@
 # ReLERNN-pipeline
-This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/molbev/msaa038), a deep learning method to produce genome-wide landscapes of recombination. This pipeline is specific for running ReLERNN on the NC State BRC Cluster. 
+This repository demonstrates a pipeline to install and run ReLERNN (https://doi.org/10.1093/molbev/msaa038), a deep learning method to produce genome-wide landscapes of recombination. This pipeline is specific for running ReLERNN on the NC State BRC Cluster. 
 
 * Please note that ReLERNN is extrememly sensitive to versions of the software used. We recommend following this installation guide exactly because these versions are confirmed to work with ReLERNN.
 * Some of these steps will only need to be done once for installation and some of them will need to be repeated each time you run ReLERNN. We have noted which steps will need to be repeated upon running ReLERNN again. 
@@ -10,7 +10,8 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
    srun --nodes=1 --ntasks-per-node=36 --time=01:00:00 --partition gpu --nodelist node94 --pty bash -i
    ```
     * Note that node94 is the only updated GPU node that will work with ReLERNN
-    * Warning: If you begin the interactive session and "(base)" appears before your username@node94, you have an activated conda environment. This will interfere with the installation. Please run ```conda deactivate``` before proceeding. 
+    * Warning: If you begin the interactive session and "(base)" appears before your username@node94, you have an activated conda environment. This will interfere with the installation. Please run ```conda deactivate``` before proceeding.
+    * For testing and running the small example that is provided by ReLERNN, we will use an interactive session on the cluster. For bigger jobs, we submit the job using sbatch. Those instructions will be provided below this section. 
     
 2. Load all previously installed modules with correct version numbers
     ```
