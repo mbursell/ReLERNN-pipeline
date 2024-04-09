@@ -1,7 +1,8 @@
 # ReLERNN-pipeline
 This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/molbev/msaa038), a deep learning method to produce genome-wide landscapes of recombination. This pipeline is specific for running ReLERNN on the NC State BRC Cluster. 
 
-* Please note that ReLERNN is extrememly sensitive to versions of the software used. We recommend following this installation guide exactly because these versions are confirmed to work with ReLERNN. 
+* Please note that ReLERNN is extrememly sensitive to versions of the software used. We recommend following this installation guide exactly because these versions are confirmed to work with ReLERNN.
+* Some of these steps will only need to be done once for installation and some of them will need to be repeated each time you run ReLERNN. We have noted which steps will need to be repeated upon running ReLERNN again. 
 
 ## Installation and Example Testing
 1. Start an interactive session on node94 for one hour using all the cores available 
