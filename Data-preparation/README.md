@@ -40,6 +40,14 @@ Required Packages:
     ```
     ./fetchChromSizes galGal4 | awk -v FS="\t" -v OFS="\t" '{ print $1, "0", $2; }' | sort-bed - > galGal4.bed
     ```
-    * In this example, we generate a BED file for the galGal4 reference genome. Replace this with the name of your reference genome. This step may be limited by what reference genomes are in the UCSC Genome Browser. 
+    * In this example, we generate a BED file for the galGal4 reference genome. Replace this with the name of your reference genome. This step may be limited by what reference genomes are in the UCSC Genome Browser.
+   
+3. Filter BED file for only chromosomes of interest
+   * The initial BED file will contain all chromosomes in the reference, including sex chromosomes and microchromosomes. You will need to filter for only your chromosomes of interest.
+   * This step is highly dependent on what data you are working with. For the chickens, the BED file used the formatting "chr1" and the VCF used "1" to label for chromosome 1. Smaller chromosomes had additional labeling after "chr" and the chromosome number. We used a python script to only grab the large chromosomes with no additional labelling using regular expressions.
+   * Warning: The names of the chromosomes in the BED file and the VCF could be different. Make sure they are matching.
+   ```
+   python Filter_BED.py
+   ```
 
    
