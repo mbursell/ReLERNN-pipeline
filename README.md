@@ -4,7 +4,7 @@ This repository demonstrates a pipeline to run ReLERNN (https://doi.org/10.1093/
 * Please note that ReLERNN is extrememly sensitive to versions of the software used. We recommend following this installation guide exactly because these versions are confirmed to work with ReLERNN. 
 
 ## Installation and Example Testing
-1. Start an interactive session on node94 for one hour using all the cores available \
+1. Start an interactive session on node94 for one hour using all the cores available 
    ```
    srun --nodes=1 --ntasks-per-node=36 --time=01:00:00 --partition gpu --nodelist node94 --pty bash -i
    ```
