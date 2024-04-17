@@ -67,7 +67,7 @@ This repository demonstrates a pipeline to install and run ReLERNN (https://doi.
 
 ## Running ReLERNN
 Now that we have installed and tested ReLERNN, we can run it on our own data. 
-* We provide a tuning scripts for local chicken breed in directory /scripts.
+* We provide a tuning script for local chicken breed in directory /scripts.
 * All parameters are defined in the notation
 ```
 cd scripts/
