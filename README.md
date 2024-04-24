@@ -9,8 +9,9 @@ This repository demonstrates a pipeline to install and run ReLERNN (https://doi.
    ```
    srun --nodes=1 --ntasks-per-node=36 --time=01:00:00 --partition gpu --nodelist node94 --pty bash -i
    ```
-    * Note that node94 is the only updated GPU node that will work with ReLERNN
+    * Note that node94 is the only updated GPU node that will work with ReLERNN. This step will need to be repeated each time you run ReLERNN.
     * Warning: If you begin the interactive session and "(base)" appears before your username@node94, you have an activated conda environment. This will interfere with the installation. Please run ```conda deactivate``` before proceeding.
+    * You will need to increase the time for bigger jobs. For example, our final runs of ReLERNN with the chicken data took two hours.
     
 2. Load all previously installed modules with correct version numbers
     ```
@@ -63,13 +64,14 @@ This repository demonstrates a pipeline to install and run ReLERNN (https://doi.
       ./example_pipeline.sh
       ```
       * Running the example should only take a few minutes. You can watch the progress be printed out. When finished running, type ```exit``` to exit the interactive session
-      * The output of the example run will be located in a directory called "example_output". The file containing the final results is called "example.PREDICT.BSCORRECTED.txt"
+      * The output of the example run will be located in a directory called "example_output". The file containing the final results with confidence intervals is called "example.PREDICT.BSCORRECTED.txt"
 
 ## Running ReLERNN
 Now that we have installed and tested ReLERNN, we can run it on our own data. 
-* We provide a tuning script for local chicken breed in directory /scripts.
+* We have provided the scripts to run ReLERNN for each chicken breed in the directory URTR40/scripts.
 * All parameters are defined in the notation
+* Repeat steps 1, 2, and 5 from above each time before running ReLERNN
 ```
 cd scripts/
-./tuning.sh
+./redjunglefowl.sh
 ```
