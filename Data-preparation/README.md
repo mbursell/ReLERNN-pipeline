@@ -2,7 +2,7 @@
 ReLERNN requires a genotype VCF that only contains biallelic variants and a BED file of the reference genome chromosome positions. Here we will show the steps we used starting from a publicly available gVCF. 
 
 ## Filter Genotype VCF
-If starting from an available gVCF that you need to filter for specific samples, begin at step 1. If your gVCF contains only the samples and chromosomes you want, start at step 3. 
+If starting from an available gVCF that you need to filter for specific samples, begin at step 1. If your gVCF contains only the samples and chromosomes you want, start at step 6. 
 
 Required Packages:
     * bcftools
@@ -13,16 +13,27 @@ Required Packages:
     ```
     bcftools view –samples-file SampleIDs.txt original.vcf > filtered.vcf
     ```
-3. Filter gVCF for chromosomes of interest using bcftools
+3. Zip and index for next step
+   ```
+   bgzip filtered.vcf
+   bcftools index filtered.vcf.gz
+   ```
+5. Filter gVCF for chromosomes of interest using bcftools
     ```
-    bcftools view filtered.vcf --regions 1,2,3 > filtered_chroms.vcf
+    bcftools view filtered.vcf.gz --regions 1,2,3 > filtered_chroms.vcf
     ```
     * Note that this code selects chromosomes 1, 2, and 3 from the VCF. Chromsomes may be named differently in other VCFs. Make sure the names match those in the VCF. 
 
-4. Filter gVCF for only biallelic variants using bcftools
+6. Filter gVCF for only biallelic variants using bcftools
     ```
     bcftools view -m2 -M2 filtered_chroms.vcf > filtered_chroms_biallelic.vcf
     ```
+7. 
+8. Count the number of snps per chromosome
+   
+   ```
+   
+   
 
 ## Create BED File
 ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. 
