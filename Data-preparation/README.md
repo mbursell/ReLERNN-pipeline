@@ -6,6 +6,7 @@ If starting from an available gVCF that you need to filter for specific samples,
 
 Required Packages:
     * bcftools
+          * we installed via conda and mamba, but feel free to use another method if you prefer another
 
 1. Generate a text file of target SampleIDs
 
@@ -28,17 +29,28 @@ Required Packages:
     ```
     bcftools view -m2 -M2 filtered_chroms.vcf > filtered_chroms_biallelic.vcf
     ```
-7. 
-8. Count the number of snps per chromosome
-   
+7. Zip and index to prepare for counting snps
    ```
-   
-   
+   bgzip filtered_chroms_biallelic.vcf
+   bcftools index filtered_chroms_biallelic.vcf.gz
+   ```
+9. Count the number of snps per chromosome
+   * ReLERNN requires that each chromosome has at least 250 snps. Here, we count the number of snps per chromosome. If a chromosome has less that 250 snps, you will need to remove the name of the chromosome from the BED file we generate in the section below.
+   * Start by making a text file of all available chromosomes
+   ```
+   bcftools query -f ‘%CHROM\n’ filtered_chroms_biallelic.vcf.gz | uniq > chroms.txt
+   ```
+   * Run this bash script to count snps on each chromosome in the text file. Make sure to edit the name of the text file and vcf in the bash script
+   ```
+   chmod +x snp_count.sh
+   ./snp_count.sh
+   ```
+    
 
 ## Create BED File
 ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. 
 
-Required Packages:
+Required Packages (tested with conda and mamba installation method):
     * bedops
     * python
 
