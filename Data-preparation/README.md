@@ -5,16 +5,16 @@ ReLERNN requires a genotype VCF that only contains biallelic variants and a BED 
 If starting from an available gVCF that you need to filter for specific samples, begin at step 1. If your gVCF contains only the samples and chromosomes you want, start at step 6. 
 
 Required Packages:
-    * bcftools
-          * we installed via conda and mamba, but feel free to use another method if you prefer another
+   * bcftools (we installed via conda and mamba, but feel free to use another method if you prefer another)
 
 1. Generate a text file of target SampleIDs
-
-2. Filter gVCF for SampleIDs using bcftools
+   * create a text file with one sampleID per line for each breed/population you want to extract a vcf for
+   
+3. Filter gVCF for SampleIDs using bcftools
     ```
     bcftools view –samples-file SampleIDs.txt original.vcf > filtered.vcf
     ```
-3. Zip and index for next step
+4. Zip and index for next step
    ```
    bgzip filtered.vcf
    bcftools index filtered.vcf.gz
@@ -51,8 +51,8 @@ Required Packages:
 ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. 
 
 Required Packages (tested with conda and mamba installation method):
-    * bedops
-    * python
+   * bedops
+   * python
 
 1. Go to [UCSC Kent Utilities](http://hgdownload.soe.ucsc.edu/admin/exe/) and download the individual `fetchChromSizes` package into the directory of your choice using the following command
     ```
@@ -71,5 +71,6 @@ Required Packages (tested with conda and mamba installation method):
    ```
    python Filter_BED.py
    ```
+   * If any of the chromosomes had less than 250 snps, please remove the name of that chromosome from the BED file before proceeding to run ReLERNN.
 
    
