@@ -1,4 +1,4 @@
-# Data and Parameters Preparation
+# Data Preparation
 ReLERNN requires a genotype VCF that only contains biallelic variants and a BED file of the reference genome chromosome positions. Here we will show the steps we used starting from a publicly available gVCF. 
 
 ## Filter Genotype VCF
