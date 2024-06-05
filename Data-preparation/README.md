@@ -1,8 +1,8 @@
 # Data Preparation
 ReLERNN requires a genotype VCF that only contains biallelic variants and a BED file of the reference genome chromosome positions. Here we will show the steps we used starting from a publicly available gVCF. 
 
-## Filter Genotype VCF
-If starting from an available gVCF that you need to filter for specific samples, begin at step 1. If your gVCF contains only the samples and chromosomes you want, start at step 6. 
+## Subset Samples from Genotype VCF
+If you are beginning with a Genotype VCF that contains more than your target samples, begin at this step. If you want to include all samples in your VCF, proceed to the next section. 
 
 Required Packages:
    * bcftools (we installed via conda and mamba, but feel free to use another method if you prefer another)
@@ -10,35 +10,43 @@ Required Packages:
 1. Generate a text file of target SampleIDs
    * create a text file with one sampleID per line for each breed/population you want to extract a vcf for
    
-3. Filter gVCF for SampleIDs using bcftools
+2. Filter gVCF for SampleIDs using bcftools
     ```
     bcftools view –samples-file SampleIDs.txt original.vcf > filtered.vcf
     ```
-4. Zip and index for next step
+
+## Filter Genotype VCF
+If starting from an available gVCF that you need to filter for specific chromosomes, begin at step 1. If your gVCF already contains only the chromosomes you want, start at step 3. 
+
+Required Packages:
+   * bcftools (we installed via conda and mamba, but feel free to use another method if you prefer another)
+   * vcflib v1.0.3
+
+1. Zip and index for next step
    ```
    bgzip filtered.vcf
    bcftools index filtered.vcf.gz
    ```
-5. Filter gVCF for chromosomes of interest using bcftools
+2. Filter gVCF for chromosomes of interest using bcftools
     ```
     bcftools view filtered.vcf.gz --regions 1,2,3 > filtered_chroms.vcf
     ```
     * Note that this code selects chromosomes 1, 2, and 3 from the VCF. Chromsomes may be named differently in other VCFs. Make sure the names match those in the VCF. 
 
-6. Filter gVCF for only biallelic variants using bcftools
+3. Filter gVCF for only biallelic variants using bcftools
     ```
     bcftools view -m2 -M2 filtered_chroms.vcf > filtered_chroms_biallelic.vcf
     ```
-7. Recalculate AF and filter out invariant sites
+4. Recalculate AF and filter out invariant sites
    ```
    vcffixup filtered_chroms_biallelic.vcf | vcffilter -f "AF > 0.05" -f "AF < 0.95" > filtered_chroms_biallelic_fixup.vcf
    ```
-8. Zip and index to prepare for counting snps
+5. Zip and index to prepare for counting snps
    ```
    bgzip filtered_chroms_biallelic_fixup.vcf
    bcftools index filtered_chroms_biallelic_fixup.vcf.gz
    ```
-9. Count the number of snps per chromosome
+6. Count the number of snps per chromosome
    * ReLERNN requires that each chromosome has at least 250 snps. Here, we count the number of snps per chromosome. If a chromosome has less that 250 snps, you will need to remove the name of the chromosome from the BED file we generate in the section below.
    * Start by making a text file of all available chromosomes
    ```
@@ -50,7 +58,6 @@ Required Packages:
    ./snp_count.sh
    ```
     
-
 ## Create BED File
 ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. 
 
