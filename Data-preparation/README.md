@@ -29,16 +29,20 @@ Required Packages:
     ```
     bcftools view -m2 -M2 filtered_chroms.vcf > filtered_chroms_biallelic.vcf
     ```
-7. Zip and index to prepare for counting snps
+7. Recalculate AF and filter out invariant sites
    ```
-   bgzip filtered_chroms_biallelic.vcf
-   bcftools index filtered_chroms_biallelic.vcf.gz
+   vcffixup filtered_chroms_biallelic.vcf | vcffilter -f "AF > 0.05" -f "AF < 0.95" > filtered_chroms_biallelic_fixup.vcf
+   ```
+8. Zip and index to prepare for counting snps
+   ```
+   bgzip filtered_chroms_biallelic_fixup.vcf
+   bcftools index filtered_chroms_biallelic_fixup.vcf.gz
    ```
 9. Count the number of snps per chromosome
    * ReLERNN requires that each chromosome has at least 250 snps. Here, we count the number of snps per chromosome. If a chromosome has less that 250 snps, you will need to remove the name of the chromosome from the BED file we generate in the section below.
    * Start by making a text file of all available chromosomes
    ```
-   bcftools query -f ‘%CHROM\n’ filtered_chroms_biallelic.vcf.gz | uniq > chroms.txt
+   bcftools query -f ‘%CHROM\n’ filtered_chroms_biallelic_fixup.vcf.gz | uniq > chroms.txt
    ```
    * Run this bash script to count snps on each chromosome in the text file. Make sure to edit the name of the text file and vcf in the bash script
    ```
@@ -72,5 +76,7 @@ Required Packages (tested with conda and mamba installation method):
    python Filter_BED.py
    ```
    * If any of the chromosomes had less than 250 snps, please remove the name of that chromosome from the BED file before proceeding to run ReLERNN.
+  
+4. Filter BED file for structural variants
 
    
