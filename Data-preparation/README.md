@@ -1,5 +1,5 @@
 # Data Preparation
-ReLERNN requires a genotype VCF that only contains biallelic variants and a BED file of the reference genome chromosome positions. Here we will show the steps we used starting from a publicly available gVCF. 
+ReLERNN requires a genotype VCF that only contains biallelic variants and a BED file of the reference genome chromosome positions as input. Here we will show the steps we used starting from publicly available gVCFs. We will also provide our steps to generate an optional BED-formatted accessibility mask for ReLERNN. Please note that our goal was to compare the recombination landscapes of multiple breeds/populations of the same species. Each population had a separate input gVCF. The same BED input could be used across populations of a species if all the gVCFs for the populations used the same reference genome and contained the same chromosomes. 
 
 ## Subset Samples from Genotype VCF
 If you are beginning with a Genotype VCF that contains more than your target samples, begin at this step. If you want to include all samples in your VCF, proceed to the next section. 
