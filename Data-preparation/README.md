@@ -5,7 +5,7 @@ ReLERNN requires a genotype VCF that only contains biallelic variants and a BED 
 If you are beginning with a Genotype VCF that contains more than your target samples, begin at this step. If you want to include all samples in your VCF, proceed to the next section. 
 
 Required Packages:
-   * bcftools (we installed via conda and mamba, but feel free to use another method if you prefer another)
+   * bcftools
 
 1. Generate a text file of target SampleIDs
    * create a text file with one sampleID per line for each breed/population you want to extract a vcf for
@@ -15,11 +15,11 @@ Required Packages:
     bcftools view –samples-file SampleIDs.txt original.vcf > filtered.vcf
     ```
 
-## Filter Genotype VCF
+## Filter Genotype VCF for ReLERNN
 If starting from an available gVCF that you need to filter for specific chromosomes, begin at step 1. If your gVCF already contains only the chromosomes you want, start at step 3. 
 
 Required Packages:
-   * bcftools (we installed via conda and mamba, but feel free to use another method if you prefer another)
+   * bcftools
    * vcflib v1.0.3
 
 1. Zip and index for next step
@@ -41,6 +41,8 @@ Required Packages:
    ```
    vcffixup filtered_chroms_biallelic.vcf | vcffilter -f "AF > 0.05" -f "AF < 0.95" > filtered_chroms_biallelic_fixup.vcf
    ```
+   * Only use this step if you pulled the samples in your VCF from a larger VCF
+    
 5. Zip and index to prepare for counting snps
    ```
    bgzip filtered_chroms_biallelic_fixup.vcf
@@ -59,7 +61,7 @@ Required Packages:
    ```
     
 ## Create BED File
-ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. 
+ReLERNN requires a BED-formatted (zero-based) file of chromosome positions for the reference genome used to create the gVCF. To create this BED file, we used the UCSC Genome Browser. These steps can be run locally on your machine. This provides the input for the --genome ReLERNN argument. 
 
 Required Packages (tested with conda and mamba installation method):
    * bedops
@@ -86,4 +88,6 @@ Required Packages (tested with conda and mamba installation method):
   
 4. Filter BED file for structural variants
 
-   
+## Create Accessibility Mask
+An optional --mask argument for ReLERNN provides a BED-formatted accessibility mask. This tells ReLERNN which bases in the VCF are inaccessible. 
+
