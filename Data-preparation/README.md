@@ -9,6 +9,7 @@ Required Packages:
 
 1. Generate a text file of target SampleIDs
    * create a text file with one sampleID per line for each breed/population you want to extract a vcf for
+   * see "sampleIDs" directory for examples
    
 2. Filter gVCF for SampleIDs using bcftools
     ```
