@@ -2,7 +2,7 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=36
-#SBATCH --time=10:00:00
+#SBATCH --time=12:00:00
 #SBATCH --exclusive
 #SBATCH --partition gpu
 #SBATCH --nodelist node94
