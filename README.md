@@ -68,10 +68,10 @@ This repository demonstrates a pipeline to install and run ReLERNN (https://doi.
 
 ## Running ReLERNN
 Now that we have installed and tested ReLERNN, we can run it on our own data. 
-* We have provided the scripts to run ReLERNN for each chicken breed in the directory URTR40/scripts.
-* All parameters are defined in the notation
-* Repeat steps 1, 2, and 5 from above each time before running ReLERNN
-```
-cd scripts/
-./redjunglefowl.sh
-```
+
+* We have provided the scripts to run ReLERNN for each chicken, goat, and sheep population/breed in the directory ReLERNN/scripts.
+* All ReLERNN parameters are specified in the {breed}.sh scripts
+* ReLERNN is submitted to run individually for each breed via sbatch using the {submit}.sh scripts
+* Steps 1, 2, and 5 from above are repeated each time in the {submit}.sh scripts
+* Output from the .predict and .bscorrect modules of ReLERNN are located in ReLERNN/output
+
