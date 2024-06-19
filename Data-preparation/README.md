@@ -90,5 +90,17 @@ Required Packages (tested with conda and mamba installation method):
 4. Filter BED file for structural variants
 
 ## Create Accessibility Mask
-An optional --mask argument for ReLERNN provides a BED-formatted accessibility mask. This tells ReLERNN which bases in the VCF are inaccessible. 
+An optional --mask argument for ReLERNN provides a BED-formatted accessibility mask. This tells ReLERNN which bases in 
+the VCF are inaccessible. We identified regions with structural variants to mask for each of our species. 
+
+1. Obtain the chromosome-level reference assemblies for each species.
+2. Filter for chromosomes of interest.
+3. Index fastas with samtools.
+   ```
+   samtools etc.
+   ```
+4. Run minimap for a whole genome alignment, specifying the reference and query genome assemblies as coordinates will be in terms of the reference.
+5. Use minimap alignment .sam file to run SyRI.
+6. Format SyRI output containing coordinates of structural variants as a bed file.
+   * 
 
