@@ -48,3 +48,16 @@ Packages Used:
    chmod +x snp_count.sh
    ./snp_count.sh
    ```
+
+# ReLERNN
+To run ReLERNN, we used a script like the ReLERNN.sh file located in this directory. We only changed the paths to files and species-specific parameters which are noted in the publication. 
+
+To see our output from ReLERNN, see the /output directory. 
+* Local Chicken output = local_chicken_autosomes_biallelic_fixup.PREDICT.BSCORRECTED.txt
+* Yuanbao Chicken output = yuanbao_chicken_autosomes_biallelic_fixup.PREDICT.BSCORRECTED.txt
+* Red Junglefowl output = red_junglefowl_autosomes_biallelic_fixup.PREDICT.BSCORRECTED.txt
+* Iranian Bezoar output = IRCA_8_Samples_Azerbaijan_Autosomes_Biallelic_Adjusted.PREDICT.BSCORRECTED.txt
+* Moroccan Goat output = MOCH_10_Samples_Random_Autosomes_Biallelic_Adjusted.PREDICT.BSCORRECTED.txt
+* Saanen Goat output = ITCH_Samples_All_Autosomes_Biallelic_Adjusted.PREDICT.BSCORRECTED.txt
+* Iranian Mouflon output = IROO_10_Samples_Random_Autosomes_Biallelic_Adjusted.PREDICT.BSCORRECTED.txt
+* Moroccan Sheep output = MOOA_10_Samples_Random_Autosomes_Biallelic_Adjusted.PREDICT.BSCORRECTED.txt
